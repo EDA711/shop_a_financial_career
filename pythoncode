@@ -1,0 +1,48 @@
+import tkinter as tk
+import webbrowser
+
+banks = {
+    "JPMorgan Chase": "https://careers.jpmorgan.com/us/en/home",
+    "Bank of America": "https://careers.bankofamerica.com/en-us",
+    "Citigroup": "https://jobs.citi.com/",
+    "Wells Fargo": "https://www.wellsfargojobs.com/",
+    "U.S. Bancorp": "https://www.usbank.com/careers.html",
+    "Truist Financial": "https://www.truist.com/careers",
+    "PNC Financial Services": "https://www.pnc.com/en/careers.html",
+    "Capital One": "https://www.capitalonecareers.com/",
+    "TD Bank": "https://www.td.com/us/en/about-td/careers/",
+    "HSBC North America": "https://www.us.hsbc.com/about-hsbc/careers/",
+    "Fifth Third Bank": "https://www.53.com/content/fifth-third/en/careers.html",
+    "Ally Financial": "https://www.ally.com/careers/",
+    "KeyBank": "https://www.key.com/about/careers.jsp",
+    "Santander Bank": "https://www.santanderbank.com/us/about/careers",
+    "Regions Financial": "https://www.regions.com/about-regions/careers",
+    "M&T Bank": "https://careers.mtb.com/",
+    "Huntington Bancshares": "https://www.huntington.com/careers"
+}
+
+def open_bank_website():
+    selected_bank_name = bank_dropdown.get()
+    selected_bank_index = list(banks.keys()).index(selected_bank_name)
+    webbrowser.open(banks[selected_bank_name])
+
+# Create the main window
+window = tk.Tk()
+window.title("Bank Career Websites")
+
+# Create the bank dropdown menu
+bank_label = tk.Label(window, text="Select a bank:")
+bank_label.grid(row=0, column=0)
+
+bank_dropdown = tk.StringVar(window)
+bank_dropdown.set(list(banks.keys())[0])
+
+bank_dropdown_menu = tk.OptionMenu(window, bank_dropdown, *banks.keys())
+bank_dropdown_menu.grid(row=0, column=1)
+
+# Create the submit button
+submit_button = tk.Button(window, text="Visit Bank Website", command=open_bank_website)
+submit_button.grid(row=1, column=0, columnspan=2, pady=10)
+
+# Start the GUI main loop
+window.mainloop()
